@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>info</title>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <style>
+        div {
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+<form style=" font-size: 1rem" method="post" enctype="multipart/form-data"
+      action="{% url 'app:user_info_change' %}">
+    {% csrf_token %}
+    <div>
+        <label>
+            <span>头像：<img src="/static/uploads/{{ icon }}"></span><br>
+            <input name="icon" type="file" id="icon_input"
+                   style=" display: inline-block;width: 50%">
+        </label>
+    </div>
+
+    <div>
+        <label>
+            用户名：<input type="text" name="username" value="{{ username }}">
+        </label>
+    </div>
+    <div>
+        <input type="password" class="form-control" name="oldpwd" id="oldpwd" placeholder="请输入旧密码"  style="width: 70%; display: inline-block; margin-top: 2rem">
+        <input type="password" class="form-control" name="newpwd1" id="newpwd1" placeholder="请输入新密码" style="width: 70%; display: inline-block; margin-top: 2rem">
+        <input type="password" class="form-control" name="newpwd2" id="newpwd2" placeholder="请再次输入新密码" style="width: 70%; display: inline-block; margin-top: 2rem">
+    </div>
+    <button type="submit" class="submit" id="submit">提交</button>
+</form>
+<br><br><br>
+<a href="{% url "app:logout" %}">
+    <button>登出</button>
+</a>
+
+</body>
+</html>
